@@ -1,0 +1,289 @@
+---
+title: "student number: 25250816"
+---
+## Originality declaration  
+
+I, Bella Chyntia Kabalmay, confirm that the work presented in this assessment is my own. Where information has been derived from other sources, I confirm that this has been indicated in the work.
+
+## Initial project scope
+
+####Background:
+Transport for London (TfL)'s Vision Zero Program aims to eliminate death and serious injuries from transport in London by 2041. Preview studies indicate that traffic accidents are frequently not randomly distributed but rather follow geographical clustering patterns that can be identify by spatial statistical analysis (Anderson, 2009;Xie & Yan, 2013). As a result, we can use spatial analysis to provide an empirical basis for determining more targeted safety interventions. 
+
+####Research question:
+Do the incidence rates of Killed of Seriously Injured (KSI) accidents in London 2024 show significant in 2024 spatial clustering patterns and where are the most prominent KSI clusters located at the MSOA level?
+
+####Hypotesis:
+KSI accidents in London in 2024 are not randomly distributed but instead show significant spatial clustering, with high-high clusters concentrated in certain MSOAs, particularly in areas with high traffic intensity and dense urban activity. 
+
+####Proposed scope and assumptions:
+- Analysis focus on KSI accidents in London in 2024 to shows condition before and after covid-19.It will be normalized against the MSOA population to produce incidence rates rather than absolute number. 
+- It is assumes that crash location in TfL data have sufficient spatial accuracy for cluster analysis.
+- Annual temporal variations are not analyzed separately bust are instead aggregated to identify consistent spatial patterns 
+
+####Evaluation of dataset:
+- TfL casualty collision data (2024):
+It provides information such as crash locations, casualty severity, and related attributes. Its advantages include broad spatial coverage and consistent reporting methodology. However, this data is potentially under reported and does not capture risk exposures such as traffic volumes.
+- MSOA boundary data (2021):
+I use this data for spatial aggregation and cluster analysis because MSOA offers a stable unit of analysis and is frequently used in urban statistical analysis, although its administrative boundaries do not always reflect actual road user movement patterns. 
+- Greater London boundary:
+I use this data for spatial subsetting to limit the analysis to the London administrative area. 
+
+####Additional Data: 
+There is no added data for this analysis. 
+
+####Planned data wrangling:
+- Filter accidents statistic for KSI in 2024.
+- Create spatially connected accident points and MSOA polygons.
+- Combine the number of KSI per MSOA.
+- Align all dataset to British National Grid CRS (EPSG: 27700)
+- clean and standardize columns to ensure only relevant variables were used in the analysis. 
+
+####Planned data analysis:
+- Exploratory mapping to visualize the distribution of KSI spatial.
+- Global Moran's to test the presence of overall spatial autocorrelation.
+- Local Moran's I (LISA)to identify high-high and low-low clusters at the MSOA level.
+- This approach follows practices used in the traffic accident literatures (Anderson, 2009; Xie & Yan, 2013) and align with the purpose of identifying priority areas for road safety interventions. 
+
+####Constraints and limitations:
+- Because of the time limitation I decided to only focusin 2024.
+- Accident data not represent actual levels of risk exposure like traffic volume.
+- MSOA based analysis can mask micro-variations at the road level.
+- Driver behavioral factors and and environmental conditions are not available in the dataset. 
+- Cluster results are descriptive and cannot be interpreted as causal relationships. 
+
+##Data loading:
+
+```{r setup, message=FALSE, warning=FALSE}
+#load requires packages
+library (sf)
+library (tidyverse)
+library(here)
+library(spdep)
+library(tmap)
+library(janitor)
+library(stringr)
+library(readr)
+
+# Load 2024 casualty data only
+file_2024 <- list.files(
+  here("DATA", "tfl_casualties"),
+  pattern = "2024.*casualty.*\\.csv$",
+  full.names = TRUE
+)
+
+tfl_raw <- read_csv(file_2024, show_col_types = FALSE) %>%
+  clean_names() %>%
+  mutate(accident_year = 2024)
+
+glimpse(tfl_raw)
+
+#Greater London boundary 
+london <- st_read(
+  here("DATA", "london_boundary", "gla", "gla", "London_GLA_Boundary.shp"),
+  quiet = TRUE
+) %>%
+  st_transform(27700)
+
+st_crs(london)
+
+#sf points from sf points to easting/northing and clip to London
+# I use CRS British National Grid 27700)
+tfl_pts <- tfl_raw |>
+  filter(!is.na(easting), !is.na(northing)) |>
+  st_as_sf(coords = c("easting", "northing"), crs = 27700, remove = FALSE) |>
+  st_intersection(london)
+
+tfl_pts
+```
+
+##Data processing:
+```{r}
+# Filter KSI casualties only
+tfl_ksi <- tfl_pts %>%
+  filter(casualty_severity %in% c("Killed", "Serious"))
+
+nrow(tfl_ksi)
+
+```
+#KSI points map
+- This exploratory map visualises the spatial distribution of Killed or Seriously Injured (KSI) traffic accidents across Greater London in 2024. The purpose of this map is to provide an initial visual assessment of whether KSI incidents appear randomly distributed or show evidence of spatial clustering.
+```{r}
+library(ggplot2)
+
+ggplot() +
+  geom_sf(data = london, fill = "grey95", color = NA) +
+  geom_sf(data = tfl_ksi, color = "red", size = 0.2, alpha = 0.6) +
+  labs(
+    title = "Spatial Distribution of KSI Accidents in London (2024)",
+    caption = "Source: TfL casualty data"
+  ) +
+  theme_minimal()
+
+```
+#Spatial join KSI to MSOA
+```{r}
+library(sf)
+library(dplyr)
+library(purrr)
+library(here)
+
+msoa_dir <- here("DATA", "msoa_2021", "LB_MSOA2021_shp", "msoa2021")
+
+msoa_files <- list.files(msoa_dir, pattern = "\\.shp$", full.names = TRUE)
+
+length(msoa_files)      # 
+head(basename(msoa_files))
+
+# read all shapefiles and joined into 1 sf object
+msoa <- map_dfr(msoa_files, ~ st_read(.x, quiet = TRUE)) %>%
+  st_transform(27700)
+
+msoa
+
+ksi_msoa_join <- st_join(
+  tfl_ksi, 
+  msoa, 
+  join = st_within
+)
+
+```
+#Count KSI per MSOA and join back to MSOA map
+```{r}
+# Count KSI per MSOA and join back to MSOA map
+msoa_ksi <- ksi_msoa_join %>%
+  st_drop_geometry() %>%
+  count(msoa21cd, name = "ksi_n")
+
+msoa_map <- msoa %>%
+  left_join(msoa_ksi, by = "msoa21cd") %>%
+  mutate(ksi_n = ifelse(is.na(ksi_n), 0, ksi_n))
+
+```
+
+#Choroplet MSOA map
+```{r}
+library(ggplot2)
+
+ggplot(msoa_map) +
+  geom_sf(aes(fill = ksi_n), color = NA) +
+  geom_sf(data = london, fill = NA, linewidth = 0.3) +
+  scale_fill_viridis_c(option = "C", name = "KSI count") +
+  labs(
+    title = "Killed or Seriously Injured (KSI) casualties by MSOA (2024)",
+    subtitle = "Counts aggregated from TfL casualty data; MSOA 2021 boundaries",
+    caption = "Source: TfL casualty data (2024) + ONS MSOA 2021 boundaries"
+  ) +
+  theme_minimal()
+
+```
+#MSOA adjacency
+```{r}
+library(spdep)
+
+msoa_nb <- poly2nb(msoa_map)
+msoa_w  <- nb2listw(msoa_nb, style = "W", zero.policy = TRUE)
+
+```
+
+#GlobalMoran's I
+```{r}
+global_moran <- moran.test(
+  msoa_map$ksi_n,
+  msoa_w,
+  zero.policy = TRUE
+)
+
+global_moran
+
+```
+#Local Moran (LISA)
+```{r}
+lisa <- localmoran(
+  msoa_map$ksi_n,
+  msoa_w,
+  zero.policy = TRUE
+)
+
+msoa_map$lisa_I <- lisa[,1]
+msoa_map$lisa_p <- lisa[,5]
+
+```
+
+#Cluster clarification
+```{r}
+mean_ksi <- mean(msoa_map$ksi_n, na.rm = TRUE)
+
+msoa_map <- msoa_map %>%
+  mutate(
+    cluster = case_when(
+      ksi_n >= mean_ksi & lisa_I > 0 & lisa_p <= 0.05 ~ "High-High",
+      ksi_n <  mean_ksi & lisa_I > 0 & lisa_p <= 0.05 ~ "Low-Low",
+      TRUE ~ "Not significant"
+    )
+  )
+
+```
+
+#LISA map
+```{r}
+ggplot(msoa_map) +
+  geom_sf(aes(fill = cluster), color = NA) +
+  geom_sf(data = london, fill = NA, linewidth = 0.3) +
+  scale_fill_manual(
+    values = c(
+      "High-High" = "red",
+      "Low-Low" = "blue",
+      "Not significant" = "grey80"
+    )
+  ) +
+  labs(
+    title = "Local Moran’s I (LISA) Clusters of KSI Accidents (2024)",
+    subtitle = "MSOA-level spatial clustering based on KSI counts",
+    caption = "Source: TfL casualty data (2024); MSOA boundaries (2021)"
+  ) +
+  theme_minimal()
+
+```
+
+
+
+
+
+####Analysis result:
+
+#KSI points map:
+The map suggests a higher concentration of KSI accidents in central London and along major transport corridors. While this visual pattern indicates potential spatial clustering, formal spatial statistical tests are required to determine whether these patterns are statistically significant.
+
+#KSI distribution map:
+The choropleth map shows where Killed or Seriously Injured (KSI) victims were located in Greater London in 2024, grouped by MSOA level.  There is clear geographical heterogeneity, which means that KSI occurrences are not spread out evenly across space.
+
+ Central London MSOAs had more KSI casualties than other locations, especially in the center city where there are a lot of roads and a lot of people using them.  These MSOAs have a lot more KSI than regions in outer London, which usually have a lot less KSI.  This trend shows that there is a strong link between the number of accidents and how busy a city is, such as how many cars are on the road, how complicated the roads are, and how many different types of land are used.
+
+ On the other hand, many outlying MSOAs have continuously low KSI counts, which means that there are less people on the roads and less interaction between different types of road users.  The slow drop in KSI counts from central London to outer London shows a strong spatial gradient instead than random variation.
+
+ Overall, the map gives early visual proof that KSI incidences are clustered in space, which supports the idea that significant traffic deaths in London are clustered in space.  This visual pattern supports the use of spatial autocorrelation approaches like Global Moran's I and Local Indicators of Spatial Association (LISA) to formally evaluate and find statistically significant clusters.
+
+#LISA map 
+The Local Moran's I (LISA) analysis shows that the Killed or Seriously Injured (KSI) deaths in London MSOAs in 2024 are not random.
+
+ The LISA cluster map shows a definite High–High cluster in central London. This means that MSOAs with high KSI counts are surrounded by other MSOAs with high KSI counts.  This pattern indicates statistically significant regional clustering of severe road traffic injuries, as opposed to a random distribution.
+
+ On the other hand, most MSOAs in outer London are not significant, which means that their KSI counts do not exhibit a statistically significant geographical relationship with other locations.  Notably, there are no noticeable Low–Low clusters, which means that there are few or no regions in 2024 where areas with continuously low KSI counts are packed together.
+
+ The High–High clusters are probably linked to places with a lot of transportation activity, like downtown London, where there are a lot of roads, a lot of traffic, and complicated urban surroundings.  These results back up the idea that KSI accidents happen in groups in certain areas, and also point out certain MSOAs that may need specific road safety measures as part of TfL's Vision Zero approach.
+
+ Overall, the LISA results add to the Global Moran's I results by showing exactly where localized KSI hotspots are. This gives policymakers and planners important spatial information to help them decide what to do first.
+
+#Conclusion:
+The analysis demonstrates that Killed or Seriously Injured (KSI) accidents in London in 2024 display considerable regional clustering at the MSOA level, rather than a random distribution.  Global Moran's I shows that there is overall positive spatial autocorrelation, which means that MSOAs with similar KSI counts are likely to be close together.
+
+ The Local Moran's I (LISA) analysis reveals that the most significant KSI clusters are High–High clusters located in central London.  These MSOAs have a lot of KSI deaths, and they are next to other MSOAs that also have a lot of KSI deaths.  This pattern of space shows that central London will be a major hotspot for significant road traffic injuries in 2024.
+
+ On the other hand, most outer London MSOAs do not show statistically significant clustering. This means that KSI incidents are more spread out or isolated in these locations.  Overall, the results show that KSI incidents in London in 2024 are grouped in space, with the most important concentrations happening in central urban MSOAs.
+
+
+##References:
+Anderson, T. K. (2009). Kernel density estimation and K-means clustering to profile road accident hotspots. Accident Analysis & Prevention, 41(3), 359–364.
+Xie, Z., & Yan, J. (2013). Detecting traffic accident clusters with network kernel density estimation and local Moran’s I. Accident Analysis & Prevention, 59, 223–231.
+
