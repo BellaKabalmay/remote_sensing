@@ -1,7 +1,12 @@
-# Summary
+#Week2
 
-In summary, this book has no content whatsoever.
-
-```{r}
-1 + 1
-```
+\# WEEK 2: Landsat 8 Sensor\
+\
+\## Summary\
+This week focused on understanding the Landsat 8 sensor and its role in remote sensing.\
+\
+\## Application\
+Landsat 8 data can be used for land cover mapping, vegetation monitoring, and environmental change detection.\
+\
+\## Reflection\
+This week helped me understand how remote sensing sensors collect and provide data for analysis.
