@@ -1,35 +1,41 @@
-#WEEK 1 : Introduction to Remote Sensing & Spectral Analysis using SNAP
+# Week 1 : Introduction to Remote Sensing
 
-##SUMMARY
-Dalam praktikum ini, citra Sentinel-2 Level-2A dianalisis menggunakan perangkat lunak SNAP untuk memahami konsep dasar penginderaan jauh, khususnya terkait karakteristik spektral berbagai jenis penutup lahan. Proses yang dilakukan meliputi visualisasi citra RGB, pembuatan subset wilayah studi, serta pengambilan sampel menggunakan polygon untuk kelas air, vegetasi, dan area urban.
+## Summary
 
-Hasil analisis menunjukkan bahwa setiap jenis penutup lahan memiliki pola reflektansi yang berbeda terhadap panjang gelombang elektromagnetik. Perbedaan ini memungkinkan identifikasi dan klasifikasi objek di permukaan bumi berdasarkan respon spektralnya.
+In this practical, I used SNAP to analyze Sentinel-2 Level-2A imagery to understand the basic concepts of remote sensing, particularly regarding the spectral characteristics of various land cover types. The process involved visualizing RGB imagery, creating subsets of the study area, and sampling using polygons for water, vegetation, and urban areas.The analysis results showed that each land cover type has a distinct reflectance pattern at different electromagnetic wavelengths. These differences allow for the identification and classification of objects on the Earth's surface based on their spectral response. Therefore, I can conclude that spectral analysis is an essential foundation for various remote sensing applications, including land cover classification and environmental monitoring.
 
-##ANALYSIS (SPECTRAL SIGNATURE)
-Analisis spektral dilakukan menggunakan Spectrum View untuk membandingkan reflektansi air, vegetasi, dan area urban.
-Air menunjukkan nilai reflektansi yang sangat rendah pada seluruh panjang gelombang dan kurva yang relatif datar. Hal ini disebabkan oleh kemampuan air dalam menyerap sebagian besar radiasi elektromagnetik, terutama pada wilayah near-infrared (NIR) dan shortwave infrared (SWIR).
-Vegetasi menunjukkan pola yang berbeda, dengan reflektansi rendah pada wilayah visible akibat penyerapan oleh klorofil, diikuti oleh peningkatan tajam pada sekitar 700–800 nm (red edge) dan nilai tinggi pada NIR. Setelah itu, reflektansi menurun pada SWIR akibat pengaruh kandungan air dalam jaringan tanaman.
-Sebaliknya, area urban menunjukkan nilai reflektansi sedang dengan pola yang lebih bervariasi. Hal ini mencerminkan sifat heterogen area perkotaan yang terdiri dari berbagai material seperti beton, aspal, dan atap bangunan.
-Perbandingan ini menunjukkan bahwa vegetasi merupakan kelas yang paling mudah diidentifikasi karena memiliki lonjakan reflektansi yang jelas pada NIR, sementara urban merupakan yang paling kompleks karena adanya variasi material.
-##SCATTER PLOT ANALYSIS
-Scatter plot antara band merah (B4) dan near-infrared (B8) menunjukkan adanya pemisahan kelas penutup lahan yang cukup jelas. Area air terkonsentrasi pada nilai reflektansi rendah pada kedua band, sedangkan vegetasi menunjukkan nilai tinggi pada band NIR namun rendah pada band merah. Area urban berada di antara keduanya dengan distribusi yang lebih menyebar.
-Pola diagonal yang terbentuk menunjukkan hubungan antara kedua band, sekaligus memperlihatkan adanya overlap pada beberapa titik, terutama pada area urban. Hal ini menunjukkan adanya mixed pixels akibat resolusi spasial Sentinel-2 sebesar 10 meter.
+## Analysis
 
-##LIMITATIONS
-Terdapat beberapa keterbatasan dalam analisis ini. Pertama, resolusi spasial Sentinel-2 (10 meter) menyebabkan adanya mixed pixels, terutama pada area urban yang kompleks. Hal ini menyulitkan dalam memperoleh sampel yang benar-benar homogen.
-Kedua, pemilihan polygon dilakukan secara manual sehingga berpotensi menimbulkan bias subjektif dalam menentukan area representatif. Selain itu, meskipun data yang digunakan sudah merupakan Level-2A (Bottom of Atmosphere), faktor atmosfer dan kondisi lingkungan tetap dapat mempengaruhi nilai reflektansi.
+### Spectral Signature
 
+I used Spectrum View to perform a spectral analysis, comparing the reflectance of water, vegetation, and urban areas. Water exhibits very low reflectance values across all wavelengths and a relatively flat curve. This is due to water's ability to absorb most electromagnetic radiation, particularly in the near-infrared (NIR) and shortwave infrared (SWIR) regions. Therefore, I believe this characteristic makes water easily distinguishable from other classes in spectral analysis.
 
-##FUTURE APPLICATION
-Teknik yang digunakan dalam praktikum ini memiliki potensi besar untuk aplikasi di masa depan, seperti pemantauan pertumbuhan kota, analisis ruang terbuka hijau, serta pengelolaan sumber daya air. Dengan berkembangnya teknologi seperti Google Earth Engine, analisis penginderaan jauh dapat dilakukan secara lebih cepat dan dalam skala yang lebih besar.
+Vegetation exhibits a different pattern, with low reflectance in the visible region due to absorption by chlorophyll, followed by a sharp increase around 700–800 nm (red edge) and high values in the NIR. After that, reflectance decreases in the SWIR due to the influence of water content in plant tissue. This pattern is important because it forms the basis for the development of vegetation indices such as NDVI, which are widely used to monitor vegetation health and density.
 
-Hal ini menunjukkan bahwa penginderaan jauh memiliki peran penting dalam mendukung pengambilan keputusan berbasis data, khususnya dalam konteks pembangunan berkelanjutan.
+In contrast, urban areas exhibit moderate reflectance values with a more varied pattern. This reflects the heterogeneous nature of urban areas, which consist of various materials such as concrete, asphalt, and building roofs. This variability makes it more difficult to identify urban classes consistently than other classes, so I think more sophisticated methods such as machine learning-based classification are needed for urban analysis.
 
-##REFLECTION
-Pada awal praktikum, penggunaan SNAP terasa cukup menantang, terutama dalam memahami fungsi berbagai tools seperti spatial subset, pembuatan polygon, dan analisis spektral. Namun, seiring proses berlangsung, pemahaman terhadap konsep penginderaan jauh menjadi lebih jelas, terutama dalam menghubungkan teori dengan hasil visual.
+### Scatter Plot
 
-Salah satu hal yang paling menarik adalah melihat bagaimana perbedaan spektral dapat digunakan untuk membedakan objek secara nyata. Namun, kesulitan juga muncul pada identifikasi area urban karena sifatnya yang tidak homogen.
+The scatterplot between the red (B4) and near-infrared (B8) bands shows a clear separation of land cover classes. Water areas are concentrated at low reflectance values in both bands, while vegetation shows high values in the NIR band but low values in the red band. Urban areas are located between the two, with a more diffuse distribution. The resulting diagonal pattern indicates a relationship between the two bands, while also revealing overlap at several points, particularly in urban areas. This indicates the presence of mixed pixels due to Sentinel-2's 10-meter spatial resolution. In my opinion, although the class separation is visible, the overlap suggests that simple threshold-based classification methods may not be accurate enough. Therefore, a more robust classification approach is needed to improve the accuracy of the results.
 
-Praktikum ini memberikan pemahaman yang lebih mendalam bahwa penginderaan jauh tidak hanya bergantung pada data, tetapi juga pada interpretasi dan pemahaman konsep yang kuat.
+## Limitations
 
+There are several limitations to this analysis. First, Sentinel-2's spatial resolution (10 meters) results in mixed pixels, especially in complex urban areas. This makes it difficult to obtain truly homogeneous samples and can reduce the accuracy of spectral analysis. Second, polygon selection was done manually, potentially introducing subjective bias in determining representative areas. This can affect the consistency of results between users. Furthermore, although the data used is Level-2A (Bottom of Atmosphere), atmospheric factors and environmental conditions can still affect reflectance values. Therefore, I think the analysis results need to be interpreted with potential uncertainty in mind.
 
+## Supporting Studies
+
+Tempfli et al. (2009) explain the basic principles of the interaction of electromagnetic energy with objects on the Earth's surface. For example, vegetation has high NIR reflectance, while water absorbs almost all the energy, thus having low reflectance. Meanwhile, Jensen (2015) emphasizes the importance of digital image processing and numerical analysis in interpreting remote sensing data, including the use of scatterplots and spectral analysis for classification. In my opinion, Tempfli et al. (2009) focuses more on physical concepts and spectral theory, while Jensen (2015) emphasizes practical applications in digital data analysis. In this practical, the two approaches complement each other: Tempfli's theory explains spectral patterns, while Jensen's methods are used to analyze the data practically. Therefore, I can conclude that theoretical understanding and technical skills are equally important in interpreting remote sensing data.
+
+## Future Application
+
+The techniques used in this practical can be applied to future applications, such as urban growth monitoring, green space analysis, and water resource management. Furthermore, with the development of platforms like Google Earth Engine, remote sensing analysis can be performed more efficiently on a large scale. This approach could support my future career prospects as a consultant, as it can support data-driven decision-making in areas such as sustainable urban planning and environmental management.
+
+## Reflection
+
+At the beginning of the practical, using SNAP felt quite challenging, especially in understanding the functions of various tools such as spatial subsetting, polygon creation, and spectral analysis. However, as the process progressed, my understanding of remote sensing concepts became clearer, especially in connecting theory with visual results. For me, one of the most interesting things was seeing how spectral differences can be used to distinguish objects in real life. This improved my ability to interpret data more critically, not only based on visuals but also based on numerical reflectance values. However, difficulties also arose in identifying urban areas due to their heterogeneous nature. This provided an understanding that remote sensing analysis is not always simple and often requires a more complex approach. Overall, this week provided a deeper understanding that remote sensing relies not only on data, but also on interpretation, conceptual understanding, and strong analytical skills.
+
+## Reference
+
+Jensen, J.R. (2015) Introductory Digital Image Processing: A Remote Sensing Perspective. 4th edn. Upper Saddle River: Prentice Hall.
+
+Tempfli, K., Huurneman, G., Bakker, W., Janssen, L., Feringa, W., Gieske, A., Grabmaier, K., Hecker, C., Horn, J. and Kerle, N. (2009) Principles of Remote Sensing: An Introductory Textbook. Enschede: ITC.

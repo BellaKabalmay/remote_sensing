@@ -3,3 +3,10 @@
 .Rproj.user
 _book/
 .Rhistory
+.RData
+
+pract3/
+*.gpkg
+*.tif
+*.img
+*.SAFE/

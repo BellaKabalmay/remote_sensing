@@ -2,9 +2,8 @@ project:
   type: book
 
 book:
-  title: "remote sensing"
-  author: "Norah Jones"
-  date: "1/20/2026"
+  title: "Remote Sensing"
+  author: "Bella Chyntia Kabalmay"
   chapters:
     - index.qmd
     - week1.qmd
@@ -14,16 +13,15 @@ book:
     - week6.qmd
     - week7.qmd
     - week8-9.qmd
-    - references.qmd
-
-bibliography: references.bib
 
 format:
   html:
     theme:
       - cosmo
       - brand
+    css: styles-book.css
     documentclass: scrreprt
+    number-sections: false
 
 editor: visual
 

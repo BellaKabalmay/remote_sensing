@@ -1,12 +1,38 @@
-#Week2
+# Week 2: Xaringan and Quarto
 
-\# WEEK 2: Landsat 8 Sensor\
-\
-\## Summary\
-This week focused on understanding the Landsat 8 sensor and its role in remote sensing.\
-\
-\## Application\
-Landsat 8 data can be used for land cover mapping, vegetation monitoring, and environmental change detection.\
-\
-\## Reflection\
-This week helped me understand how remote sensing sensors collect and provide data for analysis.
+## Summary
+
+This week's practicum and lecture focused on using tools for building a digital portfolio, namely Xaringan for creating presentation slides and Quarto for creating web-based learning diaries. The main objective of this activity was to develop skills in presenting analysis results professionally and sharing them online via GitHub. In this practical, I presented on Sentinel-2 as a remote sensing sensor. Sentinel-2 is a multispectral satellite developed by the European Space Agency (ESA) under the Copernicus program. This sensor has 13 spectral bands with a spatial resolution of up to 10 meters and a revisit time of approximately 5 days, making it highly effective for environmental and urban monitoring. In my opinion, Sentinel-2's main advantage lies in its balance of spatial, temporal, and spectral resolution. This combination makes it highly relevant for regional to global-scale analysis, especially compared to high-resolution sensors with lower temporal coverage. This demonstrates that sensor selection in remote sensing depends heavily on the analysis objectives.
+
+## Analysis
+
+Based on previous practical results using SNAP, Sentinel-2 demonstrated good capability in distinguishing various earth surface objects through spectral response. Vegetated areas showed a significant increase in reflectance in the Near Infrared (NIR) band, while water areas had low reflectance values across all wavelengths due to their energy-absorbing nature. Meanwhile, urban areas showed more variable reflectance values because they consisted of various materials such as concrete, asphalt, and building roofs. This caused their spectral characteristics to be less homogeneous than vegetation or water, making them more difficult to classify consistently. Therefore, in my opinion, Sentinel-2's spectral design directly supports various analysis methods, but its effectiveness still depends on the complexity of the observed objects. Therefore, for heterogeneous areas such as urban areas, more advanced analysis methods such as machine learning are needed to improve accuracy.
+
+## Limitations
+
+Although Sentinel-2 has many advantages, it has several limitations that need to be considered. First, its spatial resolution is still limited compared to very high-resolution sensors like WorldView, making it less than optimal for detecting small objects in urban areas. Second, Sentinel-2 data is also affected by atmospheric conditions such as clouds, which can compromise image quality. Preprocessing processes such as cloud masking are necessary, but can be complex for novice users and potentially affect analysis results. Another limitation is the presence of mixed pixels, especially in urban areas, where a single pixel can represent more than one type of land cover. This can reduce classification accuracy and demonstrates that interpretation of remote sensing data must take existing uncertainties into account.
+
+## Supporting Studies
+
+Drusch et al. (2012) emphasized the importance of Sentinel-2's spatial and temporal resolution in supporting dynamic monitoring of urban areas. This is relevant to my practical experience, where urban areas exhibit more variable reflectance values that are difficult to clearly distinguish in spectral analysis in SNAP. Meanwhile, research by Delegido et al. (2011) used Sentinel-2 for vegetation analysis using indices such as NDVI, which utilizes the reflectance differences between the red and NIR bands. This pattern was also evident in my practical experience, where vegetation showed a significant increase in reflectance in the NIR band, making it easier to identify.
+
+Comparing these two studies shows that the effectiveness of Sentinel-2 depends heavily on the analysis objective. Urban studies rely more on spatial and temporal capabilities to detect changes in urban structure, while vegetation studies utilize the sensor's spectral characteristics, particularly in the red-edge and NIR bands. This is consistent with practical results, where vegetation exhibits a clearer spectral pattern than urban areas, which tend to be heterogeneous. Therefore, the selection of analysis methods must be adjusted to the type of phenomenon being studied, especially when using Sentinel-2 data in the context of land cover classification.
+
+## Future Application
+
+In my opinion, Sentinel-2 has great potential in various applications, such as land-use change monitoring, climate change impact analysis, and sustainable urban planning. Sentinel-2 data can be used to support data-driven decision-making in the context of environmental management and urban planning. Furthermore, my ability to use Xaringan and Quarto is highly relevant to my career potential, particularly in developing my academic and professional portfolio. With these tools, analysis results can not only be performed but also effectively communicated to various audiences.
+
+## Reflection
+
+This week, I learned that the power of remote sensing extends beyond data analysis to effectively communicating the results. Using Xaringan provided a new experience in creating code-based presentations, which was initially quite challenging but became easier once I understood the basic structure. I also found my previous practical experience using SNAP to be very helpful in understanding the spectral concepts used in this presentation. The main challenges I faced were integrating various tools such as RStudio and GitHub, and ensuring the results could be published online.
+
+## Link Presentation
+
+https://bellakabalmay.github.io/remote_sensing/week2_xaringanpresentation.html
+
+## Reference
+
+Delegido, J., Verrelst, J., Meza, C.M., Rivera, J.P., Alonso, L. and Moreno, J. (2011) ‘A red-edge spectral index for remote sensing estimation of green LAI over agroecosystems’, European Journal of Agronomy, 35(4), pp. 235–245.
+
+Drusch, M., Del Bello, U., Carlier, S., Colin, O., Fernandez, V., Gascon, F., Hoersch, B., Isola, C., Laberinti, P., Martimort, P. and Meygret, A. (2012) ‘Sentinel-2: ESA’s optical high-resolution mission for GMES operational services’, Remote Sensing of Environment, 120, pp. 25–36.
+
