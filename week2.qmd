@@ -35,4 +35,3 @@ https://bellakabalmay.github.io/remote_sensing/week2_xaringanpresentation.html
 Delegido, J., Verrelst, J., Meza, C.M., Rivera, J.P., Alonso, L. and Moreno, J. (2011) ‘A red-edge spectral index for remote sensing estimation of green LAI over agroecosystems’, European Journal of Agronomy, 35(4), pp. 235–245.
 
 Drusch, M., Del Bello, U., Carlier, S., Colin, O., Fernandez, V., Gascon, F., Hoersch, B., Isola, C., Laberinti, P., Martimort, P. and Meygret, A. (2012) ‘Sentinel-2: ESA’s optical high-resolution mission for GMES operational services’, Remote Sensing of Environment, 120, pp. 25–36.
-
