@@ -6,17 +6,24 @@ In this practical, I used SNAP to analyze Sentinel-2 Level-2A imagery to underst
 
 ## Analysis
 
+![Jakarta Sentinel 2](img/polygon_jakarta.png){width="170"}
+
 ### Spectral Signature
 
-I used Spectrum View to perform a spectral analysis, comparing the reflectance of water, vegetation, and urban areas. Water exhibits very low reflectance values across all wavelengths and a relatively flat curve. This is due to water's ability to absorb most electromagnetic radiation, particularly in the near-infrared (NIR) and shortwave infrared (SWIR) regions. Therefore, I believe this characteristic makes water easily distinguishable from other classes in spectral analysis.
+![Graphic Urban](img/grafik_urban.png){width="170"}
 
-Vegetation exhibits a different pattern, with low reflectance in the visible region due to absorption by chlorophyll, followed by a sharp increase around 700–800 nm (red edge) and high values in the NIR. After that, reflectance decreases in the SWIR due to the influence of water content in plant tissue. This pattern is important because it forms the basis for the development of vegetation indices such as NDVI, which are widely used to monitor vegetation health and density.
+![Graphic Vegetation](img/grafik_vegetasi){width="170"}
 
-In contrast, urban areas exhibit moderate reflectance values with a more varied pattern. This reflects the heterogeneous nature of urban areas, which consist of various materials such as concrete, asphalt, and building roofs. This variability makes it more difficult to identify urban classes consistently than other classes, so I think more sophisticated methods such as machine learning-based classification are needed for urban analysis.
+![Graphic Water](img/grahic_water.png){width="170"}
+
+Spectral signature analysis shows that each land cover type has a distinct reflectance pattern. Vegetation has low reflectance in the visible region due to absorption by chlorophyll, then increases sharply around 700–800 nm (red edge) and remains high in the NIR region before decreasing in the SWIR. In contrast, water exhibits very low and relatively flat reflectance values across wavelengths because it absorbs most of the electromagnetic energy. Urban areas have higher reflectance values than water, but they don't show a clear pattern, with a gradual increase with wavelength, reflecting the heterogeneous nature of surface materials like concrete and asphalt. Therefore, I can conclude that spectral interpretation is more reliable for natural objects like vegetation than for complex urban areas.
+
 
 ### Scatter Plot
 
-The scatterplot between the red (B4) and near-infrared (B8) bands shows a clear separation of land cover classes. Water areas are concentrated at low reflectance values in both bands, while vegetation shows high values in the NIR band but low values in the red band. Urban areas are located between the two, with a more diffuse distribution. The resulting diagonal pattern indicates a relationship between the two bands, while also revealing overlap at several points, particularly in urban areas. This indicates the presence of mixed pixels due to Sentinel-2's 10-meter spatial resolution. In my opinion, although the class separation is visible, the overlap suggests that simple threshold-based classification methods may not be accurate enough. Therefore, a more robust classification approach is needed to improve the accuracy of the results.
+![Scatter Plot](img/Scatter_plot.png){width="170"}
+
+Meanwhile, the scatterplot between the red (B4) and NIR (B8) bands shows a fairly clear separation of classes, with vegetation having high values in the NIR and low in the red band, while water has low values in both bands. Urban areas are more widely spaced between the two, showing significant reflectance variation. However, the overlap between classes, particularly in urban areas, indicates the limited spatial resolution of Sentinel-2 (10 meters), which results in mixed pixels. Therefore, I believe that while spectral analysis is effective as an initial approach, its results are not fully accurate for detailed classification without additional methods such as machine learning-based classification or higher-resolution data.
 
 ## Limitations
 

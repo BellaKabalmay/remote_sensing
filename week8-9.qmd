@@ -10,9 +10,9 @@ What was particularly interesting was how satellite data can be used to identify
 
 ### Analysis 
 
-The analysis results show quite clear spatial temperature variations in Central Jakarta. Areas with a high heat index (level 4–5) tend to be concentrated in areas with high building density and a predominance of impermeable surfaces such as concrete and asphalt. This aligns with the urban heat island concept, where urban areas retain more heat than areas with vegetation.
+In my opinion, these results demonstrate that MODIS data is quite effective for observing general temperature patterns, but it is less capable of capturing detailed temperature variations at the city scale due to its coarse resolution (1 km). This makes temperature differences between small areas (for example, between green areas and densely built-up areas) less visible. Furthermore, while statistical analyses such as mean and standard deviation provide an initial overview, these methods are not sufficient to identify scientifically significant changes, as is done with the SAR approach using the t-test.
 
-Conversely, areas with a low heat index likely have more open space or vegetation, which helps reduce temperatures through evapotranspiration. Although I didn't directly calculate NDVI, the observed patterns are quite consistent with the theory presented in the lecture. The grid approach also offers the advantage of allowing for more detailed analysis than using a single large polygon, allowing for better identification of local variations.
+Going forward, I believe this analysis could be improved by incorporating higher-resolution data such as Landsat or even a multi-sensor approach. Furthermore, the use of more robust statistical methods or machine learning could provide deeper insights. This is especially important if this analysis is to be used for decision-making, such as urban planning or mitigating the impact of urban heat islands.
 
 ### Limitations
 

@@ -6,11 +6,15 @@ In this week's practical, I learned about multispectral satellite image processi
 
 ## Analysis
 
-This practical demonstrates the importance of the preprocessing stage in satellite image analysis. The mosaicking process allows multiple tiles to be combined into a single image, allowing for comprehensive analysis of the study area. Without this process, the analysis would be fragmented and unrepresentative.
+![Enhancement](img/enhancement.png){width="170"}
 
-The use of NDVI provides quite clear results in distinguishing vegetated and urban areas. High NDVI values indicate the presence of healthy vegetation, while low values indicate built-up or unvegetated areas. This occurs because vegetation reflects near-infrared (NIR) wavelengths and absorbs red wavelengths. Furthermore, enhancement processes such as histogram stretching help increase image contrast, making features within the image easier to visually interpret.
+The visualization results show a clear distinction between urban and vegetated areas in the Greater London area. In the true-color image, the city center appears predominantly light gray, representing built-up areas, while the suburbs show green, indicating vegetation. This is even more apparent in the false-color image, where vegetation appears as bright red and is more widespread in the suburbs than in the city center. The River Thames is also clearly visible as a dark linear feature that divides the study area.
 
-## Limitations 
+![NDVI London](img/NDVI London.png){width="170"}
+
+NDVI results support this interpretation, with valuesranging from -0.1 to 0.4, with low valuesconcentrated in the city center and high values (>0.3) in the suburbs. However, in my opinion, these NDVI results still have limitations in representing vegetation conditions in urban areas. Some areas within the city show moderate NDVI values, which are likely parks or green spaces, but could also be affected by mixed pixels of vegetation and buildings. Furthermore, Landsat's relatively coarse spatial resolution (30 m) can result in inaccurate detection of small details such as street vegetation or small parks. Therefore, although NDVI is quite effective in seeing general patterns, interpretation of the results still needs to be done carefully.
+
+## Limitations
 
 One of the main limitations of this practical is its reliance on image quality, particularly regarding cloud cover. The presence of clouds can interfere with interpretation and reduce the accuracy of the analysis. Furthermore, NDVI is a simple index and cannot capture the full complexity of urban environments. Mixed pixels in urban areas can lead to ambiguous NDVI values. Another limitation is Landsat's spatial resolution (30 meters), which is not detailed enough to capture small features such as trees on roads or small parks, which can lead to underestimation of vegetation.
 
@@ -30,7 +34,6 @@ This internship provided a deeper understanding of the remote sensing workflow, 
 
 ## Reference
 
-Jensen, J. R. (2015). Introductory Digital Image Processing: A Remote Sensing Perspective (4th ed.). Pearson Education.
-Joyce, K. (2013). Remote Sensing Lecture/Practical Materials. 
+Jensen, J. R. (2015). Introductory Digital Image Processing: A Remote Sensing Perspective (4th ed.). Pearson Education. Joyce, K. (2013). Remote Sensing Lecture/Practical Materials.
 
 Schulte to Bühne, H. & Pettorelli, N. (2018). Better together: Integrating and fusing multispectral and radar satellite imagery to inform biodiversity monitoring, ecological research and conservation science. Methods in Ecology and Evolution, 9(4), 849–865.
