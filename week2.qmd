@@ -26,6 +26,8 @@ In my opinion, Sentinel-2 has great potential in various applications, such as l
 
 This week, I learned that the power of remote sensing extends beyond data analysis to effectively communicating the results. Using Xaringan provided a new experience in creating code-based presentations, which was initially quite challenging but became easier once I understood the basic structure. I also found my previous practical experience using SNAP to be very helpful in understanding the spectral concepts used in this presentation. The main challenges I faced were integrating various tools such as RStudio and GitHub, and ensuring the results could be published online.
 
+Note: during the development of this learning diary, I encountered technical difficulties when pushing my work to GitHub. This was caused by unintentionally including raw data files in my work folder, which made the git push process very slow and initially unsuccessful.
+
 ## Link Presentation
 
 https://bellakabalmay.github.io/remote_sensing/week2_xaringanpresentation.html

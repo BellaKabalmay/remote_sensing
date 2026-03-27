@@ -6,7 +6,15 @@ This week, I learned advanced approaches in remote sensing image processing, nam
 
 ## Analysis
 
+![Fractions water, urban, vegetations](img/Fractions.png){width="170"}
+![Hard Classification](img/Hard_classification.png){width="170"}
+
 The classification results demonstrate a clear difference between pixel-based and object-based approaches. In the spectral unmixing stage, the fraction distribution appears relatively smooth and continuous, reflecting the heterogeneous nature of the surface in urban areas like Dar es Salaam. However, when converted to hard classification, the fraction information is simplified into discrete classes, resulting in a more fragmented and "salt-and-pepper" pattern. The application of SNIC segmentation then successfully grouped pixels into more spatially homogeneous objects, although the segmentation still appears grid-based and does not fully follow the natural boundaries of the landscape. The final OBIA classification results show that urban areas (red) are concentrated in the city center, while vegetation (green) is more dominant in the suburbs, and water (blue) is distributed in coastal areas and internal water bodies. However, some misclassifications remain, such as vegetated areas being classified as urban and vice versa, indicating limitations in spectral representation and the quality of the training data.
+
+![Segmented Image](img/Segmented_image.png){width="170"}
+
+![Obia Classification](img/Obia_classification.png){width="170"}
+
 
 These results demonstrate that while the OBIA approach is capable of reducing noise compared to pixel-based classification, the quality of the results is highly dependent on the segmentation parameters and the distribution of the training samples. Overly coarse segmentation results in blocks that are less representative of the actual object shape, while the limited number and variety of training polygons make the model less able to distinguish classes with similar spectral characteristics. In my opinion, this approach still has great potential for improvement, for example by adding more representative training data, optimizing SNIC parameters, or integrating multi-sensor data as suggested in the literature. Furthermore, using only three classes (urban, vegetation, water) may be too simplistic to reflect the complexity of urban areas. Therefore, adding classes such as bare soil or informal settlements could provide more informative and accurate results.
 

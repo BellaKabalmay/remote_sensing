@@ -10,9 +10,11 @@ What was particularly interesting was how satellite data can be used to identify
 
 ### Analysis 
 
-In my opinion, these results demonstrate that MODIS data is quite effective for observing general temperature patterns, but it is less capable of capturing detailed temperature variations at the city scale due to its coarse resolution (1 km). This makes temperature differences between small areas (for example, between green areas and densely built-up areas) less visible. Furthermore, while statistical analyses such as mean and standard deviation provide an initial overview, these methods are not sufficient to identify scientifically significant changes, as is done with the SAR approach using the t-test.
+![Heat Index Jakarta)(png.HeatIndex_Jakarta.png){width="170"}
 
-Going forward, I believe this analysis could be improved by incorporating higher-resolution data such as Landsat or even a multi-sensor approach. Furthermore, the use of more robust statistical methods or machine learning could provide deeper insights. This is especially important if this analysis is to be used for decision-making, such as urban planning or mitigating the impact of urban heat islands.
+Based on Figure X, the heat index map shows quite clear spatial variations in surface temperature in Central Jakarta. Areas with the highest heat index values (dark red) are concentrated in the eastern and northern parts of the study area, while areas with lower values (lighter colors) are scattered in the central and western parts. This pattern indicates that temperature distribution is not uniform but is influenced by local environmental characteristics. Areas with higher temperatures are likely related to high building density, intense urban activity, and the dominance of impermeable surfaces such as asphalt and concrete, which absorb and store heat.
+
+Conversely, areas with relatively lower temperatures likely have elements that help reduce temperatures, such as the presence of vegetation, open spaces, or urban structures that allow for better air circulation. However, because this analysis does not directly incorporate land cover data such as NDVI, this interpretation remains indicative. Nevertheless, the resulting pattern remains consistent with the concept of urban heat islands, where temperature variations are strongly influenced by differences in land use and development intensity within an urban area.
 
 ### Limitations
 
@@ -48,7 +50,15 @@ In the practical, I expanded on the results of Week 8 (Central Jakarta heat inde
 
 ### Analysis 
 
-Combining multiple MODIS images yields more stable results than using a single Landsat image, as in Week 8. Time series analysis shows that temperatures in Central Jakarta are relatively stable throughout the year, with small fluctuations likely influenced by seasonal factors and urban activity. This indicates the existence of an urban heat island phenomenon, where urban areas tend to have higher temperatures than surrounding areas.Moreover, using standard deviation provides additional insights not visible from the mean alone. Areas with high standard deviation values indicate that temperatures in those areas are more dynamic or unstable, which could be linked to changes in land use or human activity. This aligns with the concept in the lecture that changes can be detected through variations in pixel values over time.
+![Time Series Chart](img/Time_series_chart.png){width="170"}
+![LST Variability](img/LST_variability.png){width="170"}
+
+![Mean LST 2023](img/MeanLST_2023.png){width="170'}
+
+In my opinion, these results demonstrate that MODIS data is quite effective for observing general temperature patterns, but it is less capable of capturing detailed temperature variations at the city scale due to its coarse resolution (1 km). This makes temperature differences between small areas (for example, between green areas and densely built-up areas) less visible. Furthermore, while statistical analyses such as mean and standard deviation provide an initial overview, these methods are not sufficient to identify scientifically significant changes, as is done with the SAR approach using the t-test.
+
+Going forward, I believe this analysis could be improved by incorporating higher-resolution data such as Landsat or even a multi-sensor approach. Furthermore, the use of more robust statistical methods or machine learning could provide deeper insights. This is especially important if this analysis is to be used for decision-making, such as urban planning or mitigating the impact of urban heat islands.
+
 
 ### Limitations
 
