@@ -5,11 +5,8 @@
 This week, the learning focused on supervised classification using remote sensing data with the help of the Random Forest algorithm in Google Earth Engine (GEE). The practical began with the selection of Sentinel-2 imagery, the application of cloud masking, and the creation of a median composite for the Jakarta area. Next, training data was manually created using small polygons for three land cover classes: urban, water, and vegetation. The training data was then used to train a classification model and produce a land cover map. The most interesting thing about this practical was how the quality of the training data greatly affects the classification results. I learned that it is not only the algorithm that determines the results, but also the size, location, and homogeneity of the training polygons. Small, clean polygons (not mixed with other classes and not covered by clouds) produce better classification than large or mixed polygons. In addition, preprocessing stages such as cloud masking are also very important, because residual clouds can cause classification errors.
 
 ## Analysis
-
-![RGB & Polygon Jakarta](img/RGB&Polygon_Jakarta.png){width="170"}
-
-
-![Jakarta Classification](Classification_Jakarta.png){width="170"}
+![RGB & Polygon Jakarta](img/RGB&Polygon_Jakarta.png){width="70%"}
+![Jakarta Classification](img/Classification_Jakarta.png){width="70%"}
 
 Sentinel-2 image classification results for the Jakarta region show that the urban class (red) dominates almost the entire study area. This aligns with Jakarta's characteristics as a metropolitan area with high building density. Water areas (blue) are quite clearly identified in the northern part, particularly in the Jakarta Bay area, indicating that the training samples for the water class are quite representative. Meanwhile, the vegetation class (green) appears only in small numbers and is scattered, reflecting the limited green open space in urban areas. However, noise or misclassification is still visible, especially in areas covered by clouds or cloud shadows in the RGB image, which causes some pixels to be classified incorrectly.
 
@@ -34,5 +31,6 @@ This practical provided an understanding of how machine learning can be applied 
 ## Reference
 
 Barsi, Á., Kugler, Z., László, I., Szabó, G., Abdulmutalib, H., 2018. Accuracy dimensions in remote sensing. International Archives of the Photogrammetry, Remote Sensing & Spatial Information Sciences 42.
-Pal, M., Mather, P.M., 2005. Support vector machines for classification in remote sensing. International Journal of Remote Sensing 26, 1007–1011.
 
+
+Pal, M., Mather, P.M., 2005. Support vector machines for classification in remote sensing. International Journal of Remote Sensing 26, 1007–1011.

@@ -5,14 +5,13 @@
 In this week's practical, I learned about multispectral satellite image processing using Landsat 8 and Landsat 9 Collection 2 Level 2 (surface reflectance) data. The process began with selecting two adjacent image tiles to cover the study area, namely London. Since a single tile was insufficient to cover the entire area, a mosaicking process was performed to combine the two images into a single continuous dataset. Next, the study area boundaries were determined using administrative data from GADM, specifically the Greater London area. The vector data was then adjusted to match the coordinate system of the raster image before cropping and masking. The final stage involved creating visualizations such as true color, false color, and enhancement, as well as calculating the NDVI (Normalized Difference Vegetation Index) to identify vegetation distribution in the study area.
 
 ## Analysis
-
-![Enhancement](img/enhancement.png){width="170"}
+![Enhancement](img/enhancement.png){width="70%"}
 
 The visualization results show a clear distinction between urban and vegetated areas in the Greater London area. In the true-color image, the city center appears predominantly light gray, representing built-up areas, while the suburbs show green, indicating vegetation. This is even more apparent in the false-color image, where vegetation appears as bright red and is more widespread in the suburbs than in the city center. The River Thames is also clearly visible as a dark linear feature that divides the study area.
 
-![NDVI London](img/NDVI London.png){width="170"}
+![NDVI London](img/NDVI London.png){width="70%"}
 
-NDVI results support this interpretation, with valuesranging from -0.1 to 0.4, with low valuesconcentrated in the city center and high values (>0.3) in the suburbs. However, in my opinion, these NDVI results still have limitations in representing vegetation conditions in urban areas. Some areas within the city show moderate NDVI values, which are likely parks or green spaces, but could also be affected by mixed pixels of vegetation and buildings. Furthermore, Landsat's relatively coarse spatial resolution (30 m) can result in inaccurate detection of small details such as street vegetation or small parks. Therefore, although NDVI is quite effective in seeing general patterns, interpretation of the results still needs to be done carefully.
+NDVI results support this interpretation, with valuesranging from -0.1 to 0.4, with low valuesconcentrated in the city center and high values (\>0.3) in the suburbs. However, in my opinion, these NDVI results still have limitations in representing vegetation conditions in urban areas. Some areas within the city show moderate NDVI values, which are likely parks or green spaces, but could also be affected by mixed pixels of vegetation and buildings. Furthermore, Landsat's relatively coarse spatial resolution (30 m) can result in inaccurate detection of small details such as street vegetation or small parks. Therefore, although NDVI is quite effective in seeing general patterns, interpretation of the results still needs to be done carefully.
 
 ## Limitations
 

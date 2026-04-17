@@ -1,16 +1,17 @@
 # Week 8-9: Temperature and SAR
 
-## Week 8: Temperature 
+## Week 8: Temperature
 
-### Summary 
+### Summary
 
 This week, I learned how to use remote sensing data, specifically Landsat 8 imagery, to analyze Land Surface Temperature (LST) in urban areas. The practical involved several key steps: image acquisition, temperature conversion from Kelvin to Celsius, calculation of average surface temperature, and spatial analysis using a grid. The main outputs of this practical were average temperature maps and percentile-based heat index maps that classify temperatures into five categories.
 
 What was particularly interesting was how satellite data can be used to identify temperature variations on a local scale, even within a small area like Central Jakarta. By using the percentile approach, I was able to see the relative distribution of temperatures, not just absolute values. This helped me identify areas with higher heat intensity contextually. However, I also realized that these results are highly dependent on the parameters used, such as the time period, cloud filtering, and spatial resolution of the data.
 
-### Analysis 
+### Analysis
 
-![Heat Index Jakarta)(img/png.HeatIndex_Jakarta.png){width="170"}
+![Heat Index Jakarta](img/HeatIndex_Jakarta.png){width="600px"}
+
 
 Based on Figure X, the heat index map shows quite clear spatial variations in surface temperature in Central Jakarta. Areas with the highest heat index values (dark red) are concentrated in the eastern and northern parts of the study area, while areas with lower values (lighter colors) are scattered in the central and western parts. This pattern indicates that temperature distribution is not uniform but is influenced by local environmental characteristics. Areas with higher temperatures are likely related to high building density, intense urban activity, and the dominance of impermeable surfaces such as asphalt and concrete, which absorb and store heat.
 
@@ -22,8 +23,7 @@ Although this method is quite effective, there are several limitations that shou
 
 ### Supporting Studies
 
-Wilson (2020) demonstrated that urban heat distribution is influenced not only by physical factors but also by social histories, such as redlining policies. The study found that areas historically discriminated against tend to have higher temperatures due to a lack of investment in green space and infrastructure. This provides perspective that temperature analysis is not only environmental but also related to social injustice. Comparing these practical results, I believe it's likely that areas with a high heat index in Central Jakarta also share similar characteristics in terms of density and lack of vegetation, despite their different social contexts.
-Meanwhile, Klinenberg (1999), in his study of heat waves in Chicago, demonstrated that the impact of high temperatures is significantly influenced by social factors such as social isolation and economic conditions. He emphasized that heat is not only a natural phenomenon but also a "social disaster." This broadens my understanding that temperature analysis using remote sensing should not stop at mapping but also consider its impact on society. Therefore, a technical approach like the one used in this practical can form the basis for a broader analysis that integrates social and policy aspects.
+Wilson (2020) demonstrated that urban heat distribution is influenced not only by physical factors but also by social histories, such as redlining policies. The study found that areas historically discriminated against tend to have higher temperatures due to a lack of investment in green space and infrastructure. This provides perspective that temperature analysis is not only environmental but also related to social injustice. Comparing these practical results, I believe it's likely that areas with a high heat index in Central Jakarta also share similar characteristics in terms of density and lack of vegetation, despite their different social contexts. Meanwhile, Klinenberg (1999), in his study of heat waves in Chicago, demonstrated that the impact of high temperatures is significantly influenced by social factors such as social isolation and economic conditions. He emphasized that heat is not only a natural phenomenon but also a "social disaster." This broadens my understanding that temperature analysis using remote sensing should not stop at mapping but also consider its impact on society. Therefore, a technical approach like the one used in this practical can form the basis for a broader analysis that integrates social and policy aspects.
 
 ### Future Application
 
@@ -39,7 +39,6 @@ Klinenberg, E., 1999. Denaturalizing Disaster: A Social Autopsy of the 1995 Chic
 
 Wilson, B., 2020. Urban Heat Management and the Legacy of Redlining. Journal of the American Planning Association 86, 443–457.
 
-
 ## Week 9: SAR
 
 ### Summary
@@ -48,17 +47,21 @@ This week, after completing Week 8, I tried the practical SAR presented by Olie.
 
 In the practical, I expanded on the results of Week 8 (Central Jakarta heat index) by adding a time-based analysis. I used MODIS Terra and Aqua data to create a surface temperature (LST) time series throughout 2023. Furthermore, I calculated a mean temperature map to illustrate the distribution of average temperatures and a standard deviation map to identify temperature variations. The results showed that Central Jakarta has relatively high temperatures compared to its surrounding areas, with distinct temperature variations between areas. This approach demonstrated that simple statistical analysis can provide deeper insights than visualizing a single image alone.
 
-### Analysis 
+### Analysis
 
-![Time Series Chart](img/Time_series_chart.png){width="170"}
-![LST Variability](img/LST_variability.png){width="170"}
 
-![Mean LST 2023](img/MeanLST_2023.png){width="170'}
+![Time Series Chart](img/Time_series_chart.png){width="70%"} 
+
+
+![LST Variability](img/LST_variability.png){width="70%"}
+
+
+![Mean LST 2023](img/MeanLST_2023.png){width="70%"}
+
 
 In my opinion, these results demonstrate that MODIS data is quite effective for observing general temperature patterns, but it is less capable of capturing detailed temperature variations at the city scale due to its coarse resolution (1 km). This makes temperature differences between small areas (for example, between green areas and densely built-up areas) less visible. Furthermore, while statistical analyses such as mean and standard deviation provide an initial overview, these methods are not sufficient to identify scientifically significant changes, as is done with the SAR approach using the t-test.
 
 Going forward, I believe this analysis could be improved by incorporating higher-resolution data such as Landsat or even a multi-sensor approach. Furthermore, the use of more robust statistical methods or machine learning could provide deeper insights. This is especially important if this analysis is to be used for decision-making, such as urban planning or mitigating the impact of urban heat islands.
-
 
 ### Limitations
 
@@ -66,8 +69,7 @@ First, MODIS data has a relatively coarse spatial resolution (1 km), so small de
 
 ### Supporting Studies
 
-Canty (2020) developed a SAR-based change detection method using multi-temporal statistical analysis that is capable of identifying significant changes more robustly than simple methods. This approach utilizes the statistical distribution of backscatter values to detect continuous changes. Furthermore, a study by Zhuang et al. (2019) showed that methods such as log-ratio and ratio in SAR can be used to detect changes, but the results are highly dependent on the threshold used and often require additional validation using a ROC curve. This suggests that although SAR methods are more complex, they also face challenges in interpreting and validating the results.
-Compared to my practical work, the approach used is much simpler, using only the mean and standard deviation of LST data. However, this approach remains relevant because it follows the same principle: using multi-temporal data to understand change. The difference is that in SAR, changes are measured through backscatter and tested statistically (e.g., t-test), whereas in this practical work, changes are interpreted through temperature variations. Thus, this practice can be considered as a simplified version of the change detection approach, which can be further developed using more complex statistical methods such as in SAR studies.
+Canty (2020) developed a SAR-based change detection method using multi-temporal statistical analysis that is capable of identifying significant changes more robustly than simple methods. This approach utilizes the statistical distribution of backscatter values to detect continuous changes. Furthermore, a study by Zhuang et al. (2019) showed that methods such as log-ratio and ratio in SAR can be used to detect changes, but the results are highly dependent on the threshold used and often require additional validation using a ROC curve. This suggests that although SAR methods are more complex, they also face challenges in interpreting and validating the results. Compared to my practical work, the approach used is much simpler, using only the mean and standard deviation of LST data. However, this approach remains relevant because it follows the same principle: using multi-temporal data to understand change. The difference is that in SAR, changes are measured through backscatter and tested statistically (e.g., t-test), whereas in this practical work, changes are interpreted through temperature variations. Thus, this practice can be considered as a simplified version of the change detection approach, which can be further developed using more complex statistical methods such as in SAR studies.
 
 ### Future Application
 
