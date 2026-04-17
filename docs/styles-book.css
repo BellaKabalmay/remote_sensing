@@ -1,0 +1,191 @@
+/* =========================
+   QUARTO BOOK – REMOTE SENSING LEARNING DIARY
+   ========================= */
+
+/* --- Main page --- */
+body {
+  font-family: "Calibri", "Arial", sans-serif;
+  font-size: 17px;
+  line-height: 1.8;
+  color: #222222;
+  background-color: #ffffff;
+}
+
+/* Main content area */
+.quarto-container .content,
+main.content,
+.page-columns .content {
+  max-width: 850px;
+}
+
+/* --- Title of the page/chapter --- */
+h1 {
+  font-family: "Calibri", "Arial", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f3c5b;
+  margin-top: 1.2em;
+  margin-bottom: 0.7em;
+  border-bottom: 2px solid #d7dee7;
+  padding-bottom: 0.25em;
+}
+
+/* --- Subtitle --- */
+h2 {
+  font-family: "Calibri", "Arial", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #2e5b87;
+  margin-top: 1.4em;
+  margin-bottom: 0.6em;
+}
+
+h3 {
+  font-family: "Calibri", "Arial", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #3d6f99;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #4a4a4a;
+  margin-top: 1em;
+  margin-bottom: 0.4em;
+}
+
+/* --- Paragraph --- */
+p {
+  font-size: 1rem;
+  line-height: 1.8;
+  text-align: justify;
+  margin-bottom: 1em;
+}
+
+/* --- List / numbering --- */
+ul,
+ol {
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 1em;
+  padding-left: 1.5em;
+}
+
+li {
+  margin-bottom: 0.35em;
+}
+
+/* --- Bold & italic texts --- */
+strong {
+  color: #1f3c5b;
+  font-weight: 700;
+}
+
+em {
+  font-style: italic;
+}
+
+/* --- Link --- */
+a {
+  color: #2a6db0;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* --- Blockquote --- */
+blockquote {
+  border-left: 4px solid #2e5b87;
+  padding: 0.4em 1em;
+  margin: 1.2em 0;
+  color: #555555;
+  background-color: #f7fafc;
+  font-style: italic;
+}
+
+/* --- Code inline --- */
+code {
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 0.92em;
+  background-color: #f4f6f8;
+  padding: 0.15em 0.35em;
+  border-radius: 4px;
+}
+
+/* --- Code block --- */
+pre code {
+  display: block;
+  padding: 1em;
+  overflow-x: auto;
+  line-height: 1.5;
+}
+
+/* --- Picture --- */
+img {
+  max-width: 88%;
+  height: auto;
+  display: block;
+  margin: 1.2rem auto;
+  border-radius: 6px;
+}
+
+/* --- Figure container --- */
+figure {
+  margin: 1.5rem auto;
+  text-align: center;
+}
+
+/* --- Caption picture: smaller --- */
+figcaption,
+.quarto-figure figcaption,
+figure .figure-caption {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: #666666;
+  text-align: center;
+  margin-top: 0.45rem;
+}
+
+/* --- Table --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-size: 0.96rem;
+}
+
+th,
+td {
+  border: 1px solid #d9dfe6;
+  padding: 0.65em 0.8em;
+  text-align: left;
+}
+
+th {
+  background-color: #eef3f8;
+  font-weight: 700;
+}
+
+/* --- Sidebar TOC --- */
+.sidebar nav[role="doc-toc"] {
+  font-size: 0.95rem;
+}
+
+.sidebar nav[role="doc-toc"] a {
+  color: #355c7d;
+}
+
+/* --- Section gap --- */
+section {
+  margin-bottom: 1.2rem;
+}
+
+/* --- heading not to close --- */
+h1, h2, h3, h4 {
+  scroll-margin-top: 90px;
+}

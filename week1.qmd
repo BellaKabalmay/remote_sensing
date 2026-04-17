@@ -6,11 +6,11 @@ In this practical, I used SNAP to analyze Sentinel-2 Level-2A imagery to underst
 
 ## Analysis
 
-![Jakarta Sentinel 2](img/polygon_jakarta.png){width="170"}
+![Jakarta Sentinel 2](img/polygon_jakarta.png){width="70"}
 
 ### Spectral Signature
 
-![Graphic Urban](img/grafik_urban.png){width="170"}
+![Graphic Urban](img/grafik_urban.png){width="70"}
 
 ![Graphic Vegetation](img/grafik_vegetasi){width="170"}
 

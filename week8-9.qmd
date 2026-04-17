@@ -10,7 +10,7 @@ What was particularly interesting was how satellite data can be used to identify
 
 ### Analysis 
 
-![Heat Index Jakarta)(png.HeatIndex_Jakarta.png){width="170"}
+![Heat Index Jakarta)(img/png.HeatIndex_Jakarta.png){width="170"}
 
 Based on Figure X, the heat index map shows quite clear spatial variations in surface temperature in Central Jakarta. Areas with the highest heat index values (dark red) are concentrated in the eastern and northern parts of the study area, while areas with lower values (lighter colors) are scattered in the central and western parts. This pattern indicates that temperature distribution is not uniform but is influenced by local environmental characteristics. Areas with higher temperatures are likely related to high building density, intense urban activity, and the dominance of impermeable surfaces such as asphalt and concrete, which absorb and store heat.
 

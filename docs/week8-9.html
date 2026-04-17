@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Week 8-9: Temperature and SAR – Remote Sensing</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./week7.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-70a47bd5681a7291082a5b9f83d58762.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles-book.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./week8-9.html"><span class="chapter-title">Week 8-9: Temperature and SAR</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Remote Sensing</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">About This Learning Diary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Week 1 : Introduction to Remote Sensing</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Week 2: Xaringan and Quarto</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Week 3: Corrections</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week4-5.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Week 4-5: Policy and Google Earth Enginee 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Week 6: Classification I</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week7.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Week 7: Classification II</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./week8-9.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Week 8-9: Temperature and SAR</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#week-8-temperature" id="toc-week-8-temperature" class="nav-link active" data-scroll-target="#week-8-temperature">Week 8: Temperature</a>
+  <ul class="collapse">
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
+  <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
+  <li><a href="#supporting-studies" id="toc-supporting-studies" class="nav-link" data-scroll-target="#supporting-studies">Supporting Studies</a></li>
+  <li><a href="#future-application" id="toc-future-application" class="nav-link" data-scroll-target="#future-application">Future Application</a></li>
+  <li><a href="#reflection" id="toc-reflection" class="nav-link" data-scroll-target="#reflection">Reflection</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference:</a></li>
+  </ul></li>
+  <li><a href="#week-9-sar" id="toc-week-9-sar" class="nav-link" data-scroll-target="#week-9-sar">Week 9: SAR</a>
+  <ul class="collapse">
+  <li><a href="#summary-1" id="toc-summary-1" class="nav-link" data-scroll-target="#summary-1">Summary</a></li>
+  <li><a href="#analysis-1" id="toc-analysis-1" class="nav-link" data-scroll-target="#analysis-1">Analysis</a></li>
+  <li><a href="#limitations-1" id="toc-limitations-1" class="nav-link" data-scroll-target="#limitations-1">Limitations</a></li>
+  <li><a href="#supporting-studies-1" id="toc-supporting-studies-1" class="nav-link" data-scroll-target="#supporting-studies-1">Supporting Studies</a></li>
+  <li><a href="#future-application-1" id="toc-future-application-1" class="nav-link" data-scroll-target="#future-application-1">Future Application</a></li>
+  <li><a href="#reflection-1" id="toc-reflection-1" class="nav-link" data-scroll-target="#reflection-1">Reflection</a></li>
+  <li><a href="#reference-1" id="toc-reference-1" class="nav-link" data-scroll-target="#reference-1">Reference</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Week 8-9: Temperature and SAR</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="week-8-temperature" class="level2">
+<h2 class="anchored" data-anchor-id="week-8-temperature">Week 8: Temperature</h2>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<p>This week, I learned how to use remote sensing data, specifically Landsat 8 imagery, to analyze Land Surface Temperature (LST) in urban areas. The practical involved several key steps: image acquisition, temperature conversion from Kelvin to Celsius, calculation of average surface temperature, and spatial analysis using a grid. The main outputs of this practical were average temperature maps and percentile-based heat index maps that classify temperatures into five categories.</p>
+<p>What was particularly interesting was how satellite data can be used to identify temperature variations on a local scale, even within a small area like Central Jakarta. By using the percentile approach, I was able to see the relative distribution of temperatures, not just absolute values. This helped me identify areas with higher heat intensity contextually. However, I also realized that these results are highly dependent on the parameters used, such as the time period, cloud filtering, and spatial resolution of the data.</p>
+</section>
+<section id="analysis" class="level3">
+<h3 class="anchored" data-anchor-id="analysis">Analysis</h3>
+<p>![Heat Index Jakarta)(img/png.HeatIndex_Jakarta.png){width=“170”}</p>
+<p>Based on Figure X, the heat index map shows quite clear spatial variations in surface temperature in Central Jakarta. Areas with the highest heat index values (dark red) are concentrated in the eastern and northern parts of the study area, while areas with lower values (lighter colors) are scattered in the central and western parts. This pattern indicates that temperature distribution is not uniform but is influenced by local environmental characteristics. Areas with higher temperatures are likely related to high building density, intense urban activity, and the dominance of impermeable surfaces such as asphalt and concrete, which absorb and store heat.</p>
+<p>Conversely, areas with relatively lower temperatures likely have elements that help reduce temperatures, such as the presence of vegetation, open spaces, or urban structures that allow for better air circulation. However, because this analysis does not directly incorporate land cover data such as NDVI, this interpretation remains indicative. Nevertheless, the resulting pattern remains consistent with the concept of urban heat islands, where temperature variations are strongly influenced by differences in land use and development intensity within an urban area.</p>
+</section>
+<section id="limitations" class="level3">
+<h3 class="anchored" data-anchor-id="limitations">Limitations</h3>
+<p>Although this method is quite effective, there are several limitations that should be considered. First, the relatively small number of Landsat images used due to cloud cover filters may not be fully stable, so the temperature representation may not be fully stable. Second, Landsat’s spatial resolution (30 meters) may not be detailed enough to capture temperature variations at the microscale, especially in highly heterogeneous urban environments.Moreover, this analysis does not directly consider causal factors such as vegetation, building density, or human activity. Without additional data such as NDVI or land use, the interpretation remains inferential. This suggests that remote sensing temperature analysis should be combined with other datasets to generate a more comprehensive understanding.</p>
+</section>
+<section id="supporting-studies" class="level3">
+<h3 class="anchored" data-anchor-id="supporting-studies">Supporting Studies</h3>
+<p>Wilson (2020) demonstrated that urban heat distribution is influenced not only by physical factors but also by social histories, such as redlining policies. The study found that areas historically discriminated against tend to have higher temperatures due to a lack of investment in green space and infrastructure. This provides perspective that temperature analysis is not only environmental but also related to social injustice. Comparing these practical results, I believe it’s likely that areas with a high heat index in Central Jakarta also share similar characteristics in terms of density and lack of vegetation, despite their different social contexts. Meanwhile, Klinenberg (1999), in his study of heat waves in Chicago, demonstrated that the impact of high temperatures is significantly influenced by social factors such as social isolation and economic conditions. He emphasized that heat is not only a natural phenomenon but also a “social disaster.” This broadens my understanding that temperature analysis using remote sensing should not stop at mapping but also consider its impact on society. Therefore, a technical approach like the one used in this practical can form the basis for a broader analysis that integrates social and policy aspects.</p>
+</section>
+<section id="future-application" class="level3">
+<h3 class="anchored" data-anchor-id="future-application">Future Application</h3>
+<p>In the future, as a prospective consultant, I plan to expand this analysis by integrating additional data such as NDVI to measure vegetation, or land use data to identify the relationship between temperature and urban characteristics. Furthermore, this method can be applied to temporal analysis to observe temperature changes over time, particularly in the context of climate change. In a policy context, the results of such techniques can be used to identify priority areas in urban planning, such as increasing green space or mitigating urban heat islands. Integrating remote sensing data with urban planning policy holds great potential, although challenges such as data access, technical capacity, and inter-agency coordination remain obstacles.</p>
+</section>
+<section id="reflection" class="level3">
+<h3 class="anchored" data-anchor-id="reflection">Reflection</h3>
+<p>This week provided a fascinating insight into how remote sensing technology can be used to analyze complex environmental phenomena in urban areas. I find this method highly relevant to current urban issues, particularly those related to climate change and urbanization. However, what I found most interesting was how this technical analysis can be linked to social aspects, as demonstrated in the studies by Wilson (2020) and Klinenberg (1999).</p>
+</section>
+<section id="reference" class="level3">
+<h3 class="anchored" data-anchor-id="reference">Reference:</h3>
+<p>Klinenberg, E., 1999. Denaturalizing Disaster: A Social Autopsy of the 1995 Chicago Heat Wave. Theory and Society 28, 239–295.</p>
+<p>Wilson, B., 2020. Urban Heat Management and the Legacy of Redlining. Journal of the American Planning Association 86, 443–457.</p>
+</section>
+</section>
+<section id="week-9-sar" class="level2">
+<h2 class="anchored" data-anchor-id="week-9-sar">Week 9: SAR</h2>
+<section id="summary-1" class="level3">
+<h3 class="anchored" data-anchor-id="summary-1">Summary</h3>
+<p>This week, after completing Week 8, I tried the practical SAR presented by Olie. I learned how remote sensing data analysis approaches are not limited to a single image but can be expanded using image collections and statistical analysis to understand temporal dynamics. The material presented emphasized the importance of using multi-temporal data, such as MODIS, and the application of statistical methods such as mean, standard deviation, and t-tests to detect change.</p>
+<p>In the practical, I expanded on the results of Week 8 (Central Jakarta heat index) by adding a time-based analysis. I used MODIS Terra and Aqua data to create a surface temperature (LST) time series throughout 2023. Furthermore, I calculated a mean temperature map to illustrate the distribution of average temperatures and a standard deviation map to identify temperature variations. The results showed that Central Jakarta has relatively high temperatures compared to its surrounding areas, with distinct temperature variations between areas. This approach demonstrated that simple statistical analysis can provide deeper insights than visualizing a single image alone.</p>
+</section>
+<section id="analysis-1" class="level3">
+<h3 class="anchored" data-anchor-id="analysis-1">Analysis</h3>
+<p><img src="img/Time_series_chart.png" class="img-fluid" width="170" alt="Time Series Chart"> <img src="img/LST_variability.png" class="img-fluid" width="170" alt="LST Variability"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/MeanLST_2023.png" class="img-fluid figure-img"></p>
+<figcaption>Mean LST 2023</figcaption>
+</figure>
+</div>
+<p>In my opinion, these results demonstrate that MODIS data is quite effective for observing general temperature patterns, but it is less capable of capturing detailed temperature variations at the city scale due to its coarse resolution (1 km). This makes temperature differences between small areas (for example, between green areas and densely built-up areas) less visible. Furthermore, while statistical analyses such as mean and standard deviation provide an initial overview, these methods are not sufficient to identify scientifically significant changes, as is done with the SAR approach using the t-test.</p>
+<p>Going forward, I believe this analysis could be improved by incorporating higher-resolution data such as Landsat or even a multi-sensor approach. Furthermore, the use of more robust statistical methods or machine learning could provide deeper insights. This is especially important if this analysis is to be used for decision-making, such as urban planning or mitigating the impact of urban heat islands.</p>
+</section>
+<section id="limitations-1" class="level3">
+<h3 class="anchored" data-anchor-id="limitations-1">Limitations</h3>
+<p>First, MODIS data has a relatively coarse spatial resolution (1 km), so small details within cities cannot be detected well. This is in contrast to Landsat, which has a higher resolution but lower temporal frequency. Second, this analysis only uses simple statistics such as the mean and standard deviation, so it does not explicitly test the significance of changes like the t-test method in SAR. This means that the detected changes are not necessarily statistically significant. Third, external factors such as atmospheric conditions, humidity, and cloud cover can also affect the temperature values measured by the sensor, so interpretation of the results must be done carefully.</p>
+</section>
+<section id="supporting-studies-1" class="level3">
+<h3 class="anchored" data-anchor-id="supporting-studies-1">Supporting Studies</h3>
+<p>Canty (2020) developed a SAR-based change detection method using multi-temporal statistical analysis that is capable of identifying significant changes more robustly than simple methods. This approach utilizes the statistical distribution of backscatter values to detect continuous changes. Furthermore, a study by Zhuang et al.&nbsp;(2019) showed that methods such as log-ratio and ratio in SAR can be used to detect changes, but the results are highly dependent on the threshold used and often require additional validation using a ROC curve. This suggests that although SAR methods are more complex, they also face challenges in interpreting and validating the results. Compared to my practical work, the approach used is much simpler, using only the mean and standard deviation of LST data. However, this approach remains relevant because it follows the same principle: using multi-temporal data to understand change. The difference is that in SAR, changes are measured through backscatter and tested statistically (e.g., t-test), whereas in this practical work, changes are interpreted through temperature variations. Thus, this practice can be considered as a simplified version of the change detection approach, which can be further developed using more complex statistical methods such as in SAR studies.</p>
+</section>
+<section id="future-application-1" class="level3">
+<h3 class="anchored" data-anchor-id="future-application-1">Future Application</h3>
+<p>In the future, this method can be developed by integrating higher-resolution data, such as combining Landsat and MODIS to achieve a balance between spatial and temporal resolution. Furthermore, the statistical approach can be enhanced by using methods like t-tests or machine learning to improve the accuracy of change detection. This analysis also has potential applications in urban planning, particularly in identifying areas with high temperatures that require interventions such as increasing green space. Furthermore, this approach can be used for local climate change monitoring or environmental policy evaluation in urban areas.</p>
+</section>
+<section id="reflection-1" class="level3">
+<h3 class="anchored" data-anchor-id="reflection-1">Reflection</h3>
+<p>This week was very interesting because I began to understand that remote sensing is not just about creating maps, but also about analyzing data statistically and temporally. I feel that this approach is more realistic and applicable, especially in the context of urban studies and environmental change. I also realized that while simple methods like mean and standard deviation are quite informative, there are many more complex methods like the SAR t-test that can provide more accurate results. In the future, I am interested in learning more about these methods. Overall, this practical helped me understand how remote sensing data can be used for more in-depth analysis, and how simple approaches can form the basis for more complex methods in the future.</p>
+</section>
+<section id="reference-1" class="level3">
+<h3 class="anchored" data-anchor-id="reference-1">Reference</h3>
+<p>Canty, M.J. (2020) Image analysis, classification and change detection in remote sensing: with algorithms for ENVI/IDL and Python. 3rd edn. Boca Raton: CRC Press.</p>
+<p>Zhuang, H., Deng, K., Fan, H. and Yu, Y. (2019) ‘A comprehensive evaluation of change detection methods for SAR images’, Remote Sensing, 11(3), pp.&nbsp;1–20.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./week7.html" class="pagination-link" aria-label="Week 7: Classification II">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Week 7: Classification II</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
