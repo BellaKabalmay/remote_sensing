@@ -197,18 +197,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="analysis" class="level2">
 <h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/RGB&amp;Polygon_Jakarta.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>RGB &amp; Polygon Jakarta</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/Classification_Jakarta.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Jakarta Classification</figcaption>
-</figure>
-</div>
+<p><img src="img/RGB&amp;Polygon_Jakarta.png" class="img-fluid" style="width:70.0%" alt="RGB &amp; Polygon Jakarta"> <img src="img/Classification_Jakarta.png" class="img-fluid" style="width:70.0%" alt="Jakarta Classification"></p>
 <p>Sentinel-2 image classification results for the Jakarta region show that the urban class (red) dominates almost the entire study area. This aligns with Jakarta’s characteristics as a metropolitan area with high building density. Water areas (blue) are quite clearly identified in the northern part, particularly in the Jakarta Bay area, indicating that the training samples for the water class are quite representative. Meanwhile, the vegetation class (green) appears only in small numbers and is scattered, reflecting the limited green open space in urban areas. However, noise or misclassification is still visible, especially in areas covered by clouds or cloud shadows in the RGB image, which causes some pixels to be classified incorrectly.</p>
 <p>In my opinion, these classification results still have significant limitations, primarily due to the unbalanced distribution of training samples and too few for certain classes, such as vegetation. This causes the model to tend towards the urban class, resulting in almost the entire area being classified as built-up. Furthermore, the presence of incompletely masked clouds also affects the accuracy of the results. To improve classification quality, more and more varied training samples should be used for each class and the sampling area should be free of clouds. This approach is in line with the concept of accuracy in remote sensing which emphasizes the importance of input data quality and sample distribution in producing more reliable classification.</p>
 </section>
@@ -230,7 +219,8 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="reference" class="level2">
 <h2 class="anchored" data-anchor-id="reference">Reference</h2>
-<p>Barsi, Á., Kugler, Z., László, I., Szabó, G., Abdulmutalib, H., 2018. Accuracy dimensions in remote sensing. International Archives of the Photogrammetry, Remote Sensing &amp; Spatial Information Sciences 42. Pal, M., Mather, P.M., 2005. Support vector machines for classification in remote sensing. International Journal of Remote Sensing 26, 1007–1011.</p>
+<p>Barsi, Á., Kugler, Z., László, I., Szabó, G., Abdulmutalib, H., 2018. Accuracy dimensions in remote sensing. International Archives of the Photogrammetry, Remote Sensing &amp; Spatial Information Sciences 42.</p>
+<p>Pal, M., Mather, P.M., 2005. Support vector machines for classification in remote sensing. International Journal of Remote Sensing 26, 1007–1011.</p>
 
 
 </section>
