@@ -1,0 +1,96 @@
+---
+# Sentinel-2 for Urban and Environmental Remote Sensing
+
+### CASA0023 Remotely Sensing Cities and Environments  
+Name: Bella Chyntia Kabalmay
+Student number: 25250816
+output: xaringan::moon_reader
+---
+
+# Sentinel-2 Remote Sensing
+
+### Week 2 Presentation  
+### CASA0023
+
+---
+
+# Introduction
+
+- Sentinel-2 is part of the Copernicus Programme  
+- Developed by the European Space Agency (ESA)  
+- Provides multispectral Earth observation data  
+
+---
+
+# Key Characteristics
+
+- 13 spectral bands  
+- Spatial resolution: 10m, 20m, 60m  
+- Revisit time: ~5 days  
+
+---
+
+# Spectral Capabilities
+
+- Visible bands (RGB)  
+- Near Infrared (NIR)  
+- Shortwave Infrared (SWIR)  
+- Red-edge bands for vegetation analysis  
+
+---
+
+# Application: Urban Analysis
+
+- Mapping urban expansion  
+- Land use and land cover change  
+- Monitoring infrastructure growth  
+
+---
+
+# Application: Vegetation Analysis
+
+- NDVI calculation  
+- Monitoring plant health  
+- Detecting vegetation stress  
+
+---
+
+# Practical Link
+
+- SNAP used for spectral analysis  
+- Vegetation shows high NIR reflectance  
+- Urban areas show mixed spectral responses  
+- Water shows low reflectance  
+
+---
+
+# Advantages & Limitations
+
+### Advantages:
+- High temporal resolution  
+- Free and open data  
+- Strong spectral capability  
+
+### Limitations:
+- Medium spatial resolution  
+- Mixed pixels in urban areas  
+- Cloud interference  
+
+---
+
+# Reflection
+
+- Sentinel-2 is highly versatile  
+- Suitable for multiple applications  
+- Requires appropriate analytical methods  
+- Important for future remote sensing work  
+
+---
+
+# Conclusion
+
+- Sentinel-2 balances spatial, spectral, temporal resolution  
+- Effective for environmental and urban studies  
+- Widely used in remote sensing research  
+
+---
